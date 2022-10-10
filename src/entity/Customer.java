@@ -2,6 +2,11 @@ package entity;
 
 import validations.Validator;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -142,8 +147,14 @@ public class Customer {
         Customer to = customerDetailsFromAccNo(accNoTo);
         BankAccountDetails.transferBalance(from, to, amount);
 
-        printSummary(from);
-        printSummary(to);
+        String printFrom = printSummary(from);
+        String printTo = printSummary(to);
+        System.out.println(printFrom + "\n" + printTo);
+        System.out.println("Do you want to export the summary to file? y/n: ");
+        String yesNo = scan.nextLine();
+        if(yesNo.equalsIgnoreCase("y")) {
+            writeToFile(printFrom + "\n\n" + printTo + "\n\n\n");
+        }
     }
 
     public static void deposite() {
@@ -173,10 +184,23 @@ public class Customer {
             System.out.println("Account does not exist.");
         }
     }
-    private static void printSummary(Customer customer) {
-        System.out.println("First name: " + customer.getFirstName() +
+
+    private static void writeToFile(String summary){
+        try {
+            FileWriter file = new FileWriter("summaryFile.txt");
+            BufferedWriter writer = new BufferedWriter(file);
+            writer.write(summary);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static String printSummary(Customer customer) {
+        return "First name: " + customer.getFirstName() +
                 "\nAccountNo: " + customer.getBankAccountDetails().getAccNo() +
-                "\nBalance: " + customer.getBankAccountDetails().getBalance());
+                "\nBalance: " + customer.getBankAccountDetails().getBalance();
     }
 
     private static boolean sufficientAmount(double amount, Customer from) {
