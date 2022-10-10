@@ -65,9 +65,9 @@ public class Main {
                 case 1: Customer.createCustomer(); break;
                 case 2: Customer.customerDetailsList(); break;
                 case 3: Customer.balanceTransfer(); break;
-//                case 5: user.showCount(); break;
-//                case 6: user.deleteUser(); break;
-                case 7: printActions(); break;
+                case 4: Customer.deposite();break;
+                case 5: Customer.printAccountSummary(); break;
+                case 6: printActions(); break;
             }
         }
     }

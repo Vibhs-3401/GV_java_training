@@ -127,6 +127,11 @@ public class Customer {
         System.out.println("Amount to transfer: ");
         double amount = scan.nextDouble();
         scan.nextLine();
+        while (amount <= 0) {
+            System.out.println("invalid amount");
+            amount = scan.nextDouble();
+            scan.nextLine();
+        }
         sufficientAmount(amount, from);
 
         System.out.println("Account no. to which to transfer: ");
@@ -136,6 +141,42 @@ public class Customer {
         }
         Customer to = customerDetailsFromAccNo(accNoTo);
         BankAccountDetails.transferBalance(from, to, amount);
+
+        printSummary(from);
+        printSummary(to);
+    }
+
+    public static void deposite() {
+        System.out.println("Please enter account no.:");
+        String accNo = scan.nextLine();
+        if(accountNumExist(accNo)) {
+            System.out.println("Please enter deposit amount:");
+            double amount = scan.nextDouble();
+            scan.nextLine();
+            while (amount <= 0) {
+                System.out.println("Invalid amount");
+                amount = scan.nextDouble();
+                scan.nextLine();
+            }
+            Customer customer = customerDetailsFromAccNo(accNo);
+            BankAccountDetails.deposit(customer, amount);
+        }
+    }
+
+    public static void printAccountSummary() {
+        System.out.println("Please enter account no.:");
+        String accNo = scan.nextLine();
+        if(accountNumExist(accNo)) {
+            Customer customer = customerDetailsFromAccNo(accNo);
+            printSummary(customer);
+        } else {
+            System.out.println("Account does not exist.");
+        }
+    }
+    private static void printSummary(Customer customer) {
+        System.out.println("First name: " + customer.getFirstName() +
+                "\nAccountNo: " + customer.getBankAccountDetails().getAccNo() +
+                "\nBalance: " + customer.getBankAccountDetails().getBalance());
     }
 
     private static boolean sufficientAmount(double amount, Customer from) {

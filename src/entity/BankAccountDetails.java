@@ -93,14 +93,13 @@ public class BankAccountDetails {
         from.getBankAccountDetails().setBalance(fromBalance);
         to.getBankAccountDetails().setBalance(toBalance);
     }
-    public void withdraw(String accNo, int amount) {
-//        TODO: get balance from accNo
-
-        double balance = 100;
+    public void withdraw(Customer customer, int amount) {
+        double balance = customer.getBankAccountDetails().getBalance();
 
         if(balance >= amount) {
-//            System.out.println(name + " withdrawn " + amount);
+            System.out.println(customer.getFirstName() + " withdrawn " + amount);
             balance = balance - amount;
+            customer.getBankAccountDetails().setBalance(balance);
             System.out.println("Balance after withdrawal: " + balance);
             try {
                 Thread.sleep(1000);
@@ -119,11 +118,11 @@ public class BankAccountDetails {
         }
     }
 
-    public void deposit(String accNo, int amount) {
-//        TODO: get acc details from acc no
-        int balance = 100;
+    public static void deposit(Customer customer, double amount) {
+        double balance = customer.getBankAccountDetails().getBalance();
         balance = balance + amount;
-//        System.out.println(name + " deposited " + amount);
+        customer.getBankAccountDetails().setBalance(balance);
+        System.out.println(customer.getFirstName() + " deposited " + amount);
         System.out.println("Balance after deposit: " + balance);
         try {
             Thread.sleep(1000);
