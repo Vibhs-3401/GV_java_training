@@ -4,8 +4,8 @@ import Generator.AccountNoGenerator;
 import enums.AccountType;
 import validations.Validator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
 
 public class BankAccountDetails {
 
@@ -52,7 +52,7 @@ public class BankAccountDetails {
         this.balance = balance;
     }
 
-    public static BankAccountDetails createAccount(Set<String> accNoSet) {
+    public static BankAccountDetails createAccount(ArrayList<Customer> customers) {
 
         System.out.println("Account type: ");
         System.out.println("Please enter according no. of account type: \n1.Saving\n2.Current\n3.Salary");
@@ -64,7 +64,7 @@ public class BankAccountDetails {
         double balance = scan.nextDouble();
         while (!Validator.validateInitialBalance(balance)) {balance = scan.nextDouble();}
 
-        String accNo = AccountNoGenerator.generateAccNo(accNoSet);
+        String accNo = AccountNoGenerator.generateAccNo(customers);
 
         return new BankAccountDetails(accNo, accType, balance);
 
@@ -82,6 +82,17 @@ public class BankAccountDetails {
         }
     }
 
+
+    public static void transferBalance(Customer from, Customer to, double amount) {
+        double fromBalance = from.getBankAccountDetails().getBalance();
+        double toBalance = to.getBankAccountDetails().getBalance();
+
+        fromBalance = fromBalance - amount;
+        toBalance = toBalance + amount;
+
+        from.getBankAccountDetails().setBalance(fromBalance);
+        to.getBankAccountDetails().setBalance(toBalance);
+    }
     public void withdraw(String accNo, int amount) {
 //        TODO: get balance from accNo
 
@@ -124,9 +135,9 @@ public class BankAccountDetails {
     @Override
     public String toString() {
         return "Account{" +
-                "accNo='" + accNo + '\'' +
-                ", accountType=" + accountType +
-                ", balance=" + balance + '\'' +
+                "accNo = " + accNo + '\n' +
+                "accountType = " + accountType + '\n' +
+                "balance = " + balance + '\n' +
                 '}';
     }
 

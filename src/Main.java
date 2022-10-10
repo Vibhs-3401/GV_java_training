@@ -63,9 +63,8 @@ public class Main {
                     scan.close();
                     return;
                 case 1: Customer.createCustomer(); break;
-//                case 2: user.getUserDetails(); break;
-//                case 3: user.editUser(); break;
-//                case 4: user.assignDepartment(); break;
+                case 2: Customer.customerDetailsList(); break;
+                case 3: Customer.balanceTransfer(); break;
 //                case 5: user.showCount(); break;
 //                case 6: user.deleteUser(); break;
                 case 7: printActions(); break;
@@ -81,19 +80,19 @@ public class Main {
         System.out.println("0 - Quit\n" +
                 "1 - Open account for new customer\n" +
                 "2 - Get existing customer details\n" +
-                "4 - view account details\n" +
-                "5 - Transact withdraw\n" +
-                "6 - Transact Deposit\n" +
-                "7 - View options");
+                "3 - Balance Transfer\n" +
+                "4 - Deposit\n" +
+                "5 - View Account summary" +
+                "6 - View options");
         System.out.println("-----------------------------------------");
         System.out.println("Choose any number for according action: ");
         int option = scan.nextInt();
         scan.nextLine();
-        if (option >= 0 && option < 8) {
+        if (option >= 0 && option < 7) {
             return option;
         } else {
             System.out.println("Invalid option!");
-            return 7;
+            return 6;
         }
     }
 }
