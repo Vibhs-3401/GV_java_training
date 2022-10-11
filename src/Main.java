@@ -45,10 +45,8 @@ based on user input proceede accordingly.
 
 
 
-import entity.BankAccountDetails;
 import entity.Customer;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -65,7 +63,7 @@ public class Main {
                 case 1: Customer.createCustomer(); break;
                 case 2: Customer.customerDetailsList(); break;
                 case 3: Customer.balanceTransfer(); break;
-                case 4: Customer.deposite();break;
+                case 4: Customer.deposit();break;
                 case 5: Customer.printAccountSummary(); break;
                 case 6: printActions(); break;
             }
@@ -82,7 +80,7 @@ public class Main {
                 "2 - Get existing customer details\n" +
                 "3 - Balance Transfer\n" +
                 "4 - Deposit\n" +
-                "5 - View Account summary" +
+                "5 - View Account summary\n" +
                 "6 - View options");
         System.out.println("-----------------------------------------");
         System.out.println("Choose any number for according action: ");
