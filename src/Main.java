@@ -45,10 +45,8 @@ based on user input proceede accordingly.
 
 
 
-import entity.BankAccountDetails;
 import entity.Customer;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -65,7 +63,7 @@ public class Main {
                 case 1: Customer.createCustomer(); break;
                 case 2: Customer.customerDetailsList(); break;
                 case 3: Customer.balanceTransfer(); break;
-                case 4: Customer.deposite();break;
+                case 4: Customer.deposit();break;
                 case 5: Customer.printAccountSummary(); break;
                 case 6: printActions(); break;
             }

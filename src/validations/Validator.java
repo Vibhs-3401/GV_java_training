@@ -15,12 +15,18 @@ public class Validator {
     }
 
     public static boolean validatePhone(String phoneNumber) {
+        if (phoneNumber.length() != 10) {
+            System.out.println("length should be 10 digit");
+            return false;
+        }
         if (phoneNumber.matches("([1-9])([\\d]+){9}")) {
             return true;
-        } else {
+        }
+        else {
             System.out.println("Enter valid phone number.");
             return false;
         }
+
     }
 
 
@@ -37,12 +43,10 @@ public class Validator {
         } else if (name.matches("true|false")) {
             System.out.println("You have entered 'Boolean' type value, Please enter a 'String'");
             return false;
-        }
-        else if (!name.matches("^((?=[A-Za-z0-9@])(?![_\\\\-]).)*$")) {
+        } else if (!name.matches("^((?=[A-Za-z0-9@])(?![_\\\\-]).)*$")) {
             System.out.println("Restricted special character found, please enter valid name");
             return false;
-        }
-        else if (name.length() > 50) {
+        } else if (name.length() > 50) {
             System.out.println("Name is too long");
             return false;
         } else {
@@ -51,9 +55,9 @@ public class Validator {
     }
 
     public static Boolean validateAccountType(int accountType) {
-         if(accountType == 1 || accountType == 2 || accountType == 3) {
-             return true;
-         }else {
+        if (accountType == 1 || accountType == 2 || accountType == 3) {
+            return true;
+        } else {
             System.out.println("Please enter valid number...!");
             return false;
         }

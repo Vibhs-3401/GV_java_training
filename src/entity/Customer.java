@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -77,6 +78,8 @@ public class Customer {
     public void setBankAccountDetails(BankAccountDetails bankAccountDetails) {
         this.bankAccountDetails = bankAccountDetails;
     }
+
+    private static String HOME = System.getProperty("user.home");
 
     public static void createCustomer() {
         System.out.println("Please enter below details: \n");
@@ -157,7 +160,7 @@ public class Customer {
         }
     }
 
-    public static void deposite() {
+    public static void deposit() {
         System.out.println("Please enter account no.:");
         String accNo = scan.nextLine();
         if(accountNumExist(accNo)) {
@@ -187,7 +190,12 @@ public class Customer {
 
     private static void writeToFile(String summary){
         try {
-            FileWriter file = new FileWriter("summaryFile.txt");
+            String fileName = "summary_file.txt";
+            Path path = Paths.get(HOME + "/" + fileName);
+            if(!Files.exists(path)) {
+                Files.createFile(path);
+            }
+            FileWriter file = new FileWriter(path.toFile());
             BufferedWriter writer = new BufferedWriter(file);
             writer.write(summary);
             writer.newLine();
