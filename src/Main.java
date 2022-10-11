@@ -80,7 +80,7 @@ public class Main {
                 "2 - Get existing customer details\n" +
                 "3 - Balance Transfer\n" +
                 "4 - Deposit\n" +
-                "5 - View Account summary" +
+                "5 - View Account summary\n" +
                 "6 - View options");
         System.out.println("-----------------------------------------");
         System.out.println("Choose any number for according action: ");
