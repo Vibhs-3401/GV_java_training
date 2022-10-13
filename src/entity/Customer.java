@@ -157,6 +157,8 @@ public class Customer {
         String yesNo = scan.nextLine();
         if(yesNo.equalsIgnoreCase("y")) {
             writeToFile(printFrom + "\n\n" + printTo + "\n\n\n");
+        } else {
+            System.out.println("invalid option selected..exiting...");
         }
     }
 
@@ -182,7 +184,7 @@ public class Customer {
         String accNo = scan.nextLine();
         if(accountNumExist(accNo)) {
             Customer customer = customerDetailsFromAccNo(accNo);
-            printSummary(customer);
+            System.out.println(printSummary(customer));
         } else {
             System.out.println("Account does not exist.");
         }
